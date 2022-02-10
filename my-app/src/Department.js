@@ -28,7 +28,6 @@ export class Department extends Component{
         const {
             departments 
         }=this.state;
-
         return(
 <div>
    <table className="table table-striped">
@@ -44,7 +43,7 @@ export class Department extends Component{
            Options
        </th>
    </tr>
-   </thead>
+   </thead>   
    <tbody>
        {departments.map(dep=>
            <tr key={dep.DepartmentId}>
