@@ -177,10 +177,10 @@ export class Employee extends Component{
    <tbody>
         {employees.map(emp=>
            <tr key={emp.EmployeeId}>
-               <td>{dep.EmployeeId}</td>
-               <td>{dep.EmployeeName}</td>
-               <td>{dep.Department}</td>
-               <td>{dep.DateOfJoining}</td>
+               <td>{emp.EmployeeId}</td>
+               <td>{emp.EmployeeName}</td>
+               <td>{emp.Department}</td>
+               <td>{emp.DateOfJoining}</td>
                <td>
                <button type="button"
                className="btn btn-light mr-1"
