@@ -88,7 +88,7 @@ export class Employee extends Component{
 
 
     updateClick(){
-        fetch(variables.API_URL+'department',{
+        fetch(variables.API_URL+'employee',{
             method:'PUT',
             headers:{
                 'Accept':'application/json',
@@ -130,7 +130,21 @@ export class Employee extends Component{
         }) 
     }
 }
+    imageUpload=(e)=>{
+        e.preventDefault();
 
+        const formData=new FormData();
+        formData.append("file",e.target.files[0],e.target.files[0].name);
+
+        fetch(variables.API_URL+'employee/savefile',{
+            method:'POST',
+            body:formData
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            this.setState({photoFileName:data});
+        })
+    }
     render(){
         const {
             departments,
@@ -250,9 +264,11 @@ export class Employee extends Component{
  <div className="p-2 w-50 bd-highlight">
      <img width="250px" height="250px"
      src={PhotoPath+PhotoFileName}/>
+     <input className="m-2" type="file" onChange={this.imageUpload}/>
+ </div>      
  </div>
 
-      {EmployeeId==0?
+ {EmployeeId==0?
         <button type="button"
         className="btn btn-primary float-start"
         onClick={()=>this.createClick()}
@@ -265,8 +281,6 @@ export class Employee extends Component{
         onClick={()=>this.updateClick()}
         >Update</button>
         :null}
-     </div>
-
      </div>
     </div>       
 
