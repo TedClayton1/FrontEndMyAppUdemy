@@ -10,7 +10,7 @@ export class Employee extends Component{
             departments:[],
             employees:[],
             modalTitle:"",
-            EmployeeId:0,
+            EmployeeID:0,
             EmployeeName:"",
             Department:"",
             DateOfJoining:"",
@@ -45,7 +45,7 @@ export class Employee extends Component{
     addClick(){
         this.setState({
             modalTitle:"Add Employee",
-            EmployeeId:0,
+            EmployeeID:0,
             EmployeeName:"",
             Department:"",
             DateOfJoining:"",
@@ -55,7 +55,7 @@ export class Employee extends Component{
     editClick(emp){
         this.setState({
             modalTitle:"Edit Employee",
-            EmployeeId:emp.EmployeeId,
+            EmployeeID:emp.EmployeeId,
             EmployeeName:emp.EmployeeName,
             Department:emp.Department,
             DateOfJoining:emp.DateOfJoining,
@@ -95,7 +95,7 @@ export class Employee extends Component{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-               EmployeeId:this.state.EmployeeId,
+               EmployeeID:this.state.EmployeeId,
                EmployeeName:this.state.EmployeeName,
                Department:this.state.Department,
                DateOfJoining:this.state.DateOfJoining,
@@ -150,7 +150,7 @@ export class Employee extends Component{
             departments,
             employees,
             modalTitle,
-            EmployeeId,
+            EmployeeID,
             EmployeeName,
             Department,
             DateOfJoining, 
@@ -172,7 +172,7 @@ export class Employee extends Component{
     <thead>
     <tr>
        <th>
-           EmployeeId
+           EmployeeID
        </th>       
        <th>
            EmployeeName 
@@ -190,7 +190,7 @@ export class Employee extends Component{
    </thead>   
    <tbody>
         {employees.map(emp=>
-           <tr key={emp.EmployeeId}>
+           <tr key={emp.EmployeeID}>
                <td>{emp.EmployeeId}</td>
                <td>{emp.EmployeeName}</td>
                <td>{emp.Department}</td>
@@ -268,14 +268,14 @@ export class Employee extends Component{
  </div>      
  </div>
 
- {EmployeeId==0?
+ {EmployeeID==0?
         <button type="button"
         className="btn btn-primary float-start"
         onClick={()=>this.createClick()}
         >Create</button>
         :null}
 
-      {EmployeeId!==0?
+      {EmployeeID!==0?
         <button type="button"
         className="btn btn-primary float-start"
         onClick={()=>this.updateClick()}
