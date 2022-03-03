@@ -26,6 +26,12 @@ export class Employee extends Component{
         .then(data=>{
             this.setState({employees:data});
         });
+
+        fetch(variables.API_URL+'department')
+        .then(response=>response.json())
+        .then(data=>{
+            this.setState({departments:data});
+        });
     }
 
     componentDidMount(){
