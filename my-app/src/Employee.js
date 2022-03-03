@@ -248,7 +248,7 @@ export class Employee extends Component{
 
       <div className="input-group mb-3">
       <span className="input-group-text">DOJ</span>
-      <input type="text" className="form-control"
+      <input type="date" className="form-control"
       value={DateOfJoining}
       onChange={this.changeDateOfJoining}/>
       </div>
