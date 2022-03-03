@@ -10,12 +10,12 @@ export class Employee extends Component{
             departments:[],
             employees:[],
             modalTitle:"",
-            EmployeeId:0,
+            EmployeeID:0,
             EmployeeName:"",
             Department:"",
-            DateOfJoining:"",
+            DateOfJoining:"",            
+            PhotoPath:variables.PHOTO_URL,
             PhotoFileName:"anonymous.jfif",
-            PhotoPath:variables.PHOTO_URL
         }
     }
 
@@ -55,7 +55,7 @@ export class Employee extends Component{
     editClick(emp){
         this.setState({
             modalTitle:"Edit Employee",
-            EmployeeId:emp.EmployeeId,
+            EmployeeID:emp.EmployeeID,
             EmployeeName:emp.EmployeeName,
             Department:emp.Department,
             DateOfJoining:emp.DateOfJoining,
@@ -95,7 +95,7 @@ export class Employee extends Component{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                EmployeeId:this.state.EmployeeName,
+                EmployeeID:this.state.EmployeeID,
                 EmployeeName:this.state.EmployeeName,
                 Department:this.state.Department,
                 DateOfJoining:this.state.DateOfJoining,
@@ -136,10 +136,11 @@ export class Employee extends Component{
             departments,
             employees,
             modalTitle,
-            EmployeeId,
+            EmployeeID,
             EmployeeName,
             Department,
             DateOfJoining,
+            PhotoPath,
             PhotoFileName
         }=this.state;
 
@@ -157,7 +158,7 @@ export class Employee extends Component{
     <thead>
     <tr>
        <th>
-           EmployeeId
+           EmployeeID
        </th>
        <th>
            EmployeeName 
@@ -175,11 +176,11 @@ export class Employee extends Component{
    </thead>   
    <tbody>
    {employees.map(emp=>
-           <tr key={emp.EmployeeId}>
-               <td>{dep.EmployeeId}</td>
-               <td>{dep.EmployeeName}</td>
-               <td>{dep.Department}</td>
-               <td>{dep.DateOfJoining}</td>               
+           <tr key={emp.EmployeeID}>
+               <td>{emp.EmployeeID}</td>
+               <td>{emp.EmployeeName}</td>
+               <td>{emp.Department}</td>
+               <td>{emp.DateOfJoining}</td>               
                <td>
                <button type="button"
                className="btn btn-light mr-1"
@@ -216,27 +217,58 @@ export class Employee extends Component{
     </div>
 
 <div className="modal-body">
+ <div className="d-flex flex-row bd-highlight mb-3">
+
+     <div className="p-2 w-50 bd-highlight">
+
     <div className="input-group mb-3">
-      <span className="input-group-text">DepartmentName</span>
+      <span className="input-group-text">Emp Name</span>
       <input type="text" className="form-control"
-      value={DepartmentName}
-      onChange={this.changeDepartmentName}/>
+      value={EmployeeName}
+      onChange={this.changeEmployeeName}/>
       </div>
 
-      {DepartmentId==0?
+      <div className="input-group mb-3">
+      <span className="input-group-text">Department</span>
+      <select className="form-select"
+      onChange={this.changeDepartment}
+      value={Department}>
+          {departments.map(dep=><option key={dep.DepartmentId}>
+              {dep.DepartmentName}
+          </option>)}
+      </select>
+     
+      </div>
+
+      <div className="input-group mb-3">
+      <span className="input-group-text">DOJ</span>
+      <input type="text" className="form-control"
+      value={DateOfJoining}
+      onChange={this.changeDateOfJoining}/>
+      </div>
+
+    </div>
+    <div className="p-2 w-50 bd-highlight">
+        <img width="250px" height="250px"
+        src={PhotoPath+PhotoFileName}/>
+    </div>
+
+   
+      {EmployeeID==0?
         <button type="button"
         className="btn btn-primary float-start"
         onClick={()=>this.createClick()}
         >Create</button>
         :null}
 
-      {DepartmentId!==0?
+      {EmployeeID!==0?
         <button type="button"
         className="btn btn-primary float-start"
         onClick={()=>this.updateClick()}
         >Update</button>
         :null}
-
+       
+    </div>
 </div>
 
 
