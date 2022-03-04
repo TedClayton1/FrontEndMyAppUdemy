@@ -94,7 +94,7 @@ export class Employee extends Component{
 
 
     updateClick(){
-        fetch(variables.API_URL+'employee',{
+        fetch(variables.API_URL+'department',{
             method:'PUT',
             headers:{
                 'Accept':'application/json',
@@ -142,7 +142,7 @@ export class Employee extends Component{
         const formData=new FormData();
         formData.append("file",e.target.files[0],e.target.files[0].name);
 
-        fetch(variables.API_URL+'Employee/savefile',{
+        fetch(variables.API_URL+'employee/savefile',{
             method:'POST',
             body:formData
         })
