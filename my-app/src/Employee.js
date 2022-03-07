@@ -77,6 +77,7 @@ export class Employee extends Component{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
+                
                 EmployeeName:this.state.EmployeeName,
                 Department:this.state.Department,
                 DateOfJoining:this.state.DateOfJoining,
