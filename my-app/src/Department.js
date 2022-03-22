@@ -10,15 +10,47 @@ export class Department extends Component{
             departments:[],
             modalTitle:"",
             DepartmentName:"",
-            DepartmentId:0
+            DepartmentId:0,
+
+            DepartmentIdFilter:"",
+            DepartmentNameFilter:"",
+            departmentsWithoutFilter:[]
         }
+    }
+
+    FilterFn(){
+        var DepartmentIdFilter=this.state.DepartmentIdFilter;
+        var DepartmentNameFilter = this.state.DepartmentNameFilter;
+
+        var filteredData=this.state.departmentsWithoutFilter.filter(
+            function(el){
+                return el.DepartmentId.toString().toLowerCase().includes(
+                    DepartmentIdFilter.toString().trim().toLowerCase()
+                )&&
+                el.DepartmentName.toString().toLowerCase().includes(
+                    DepartmentNameFilter.toString().trim().toLowerCase()
+                )               
+            } 
+        );
+
+        this.setState({departments:filteredData});
+
+    }
+
+    changeDepartmentIdFilter = (e)=>{
+        this.state.DepartmentIdFilter=e.target.value;
+        this.FilterFn();
+    }
+    changeDepartmentNameFilter = (e)=>{
+        this.state.DepartmentNameFilter=e.target.value;
+        this.FilterFn();
     }
 
     refreshList(){
         fetch(variables.API_URL+'department')
         .then(response=>response.json())
         .then(data=>{
-            this.setState({departments:data});
+            this.setState({departments:data,departmentsWithoutFilter:data});
         });
     }
 
@@ -129,11 +161,19 @@ export class Department extends Component{
     <thead>
     <tr>
        <th>
+           <input className="form-control m-2"
+           onChange={this.changeDepartmentIdFilter}
+           placeholder="Filter"/>
+
            DepartmentId
        </th>
        <th>
-           DepartmentName 
-       </th>
+           <input className="form-control m-2"
+           onChange={this.changeDepartmentNameFilter}
+           placeholder="Filter"/>
+           
+           DepartmentName
+       </th>       
        <th>
            Options
        </th>
