@@ -94,7 +94,7 @@ export class Employee extends Component{
 
 
     updateClick(){
-        fetch(variables.API_URL+'department',{
+        fetch(variables.API_URL+'employee',{
             method:'PUT',
             headers:{
                 'Accept':'application/json',
