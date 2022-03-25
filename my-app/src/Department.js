@@ -37,6 +37,19 @@ export class Department extends Component{
 
     }
 
+    sortResult(prop,asc){
+        var sortedData=this.state.departmentsWithoutFilter.sort(function(a,b){
+            if(asc){
+                return (a[prop]>b[prop])?1:((a[prop]<b[prop])?-1:0);
+            }
+            else{
+                return (b[prop]>a[prop])?1:((b[prop]<a[prop])?-1:0);
+            }   
+        });
+
+        this.setState({departments:sortedData});
+    }
+
     changeDepartmentIdFilter = (e)=>{
         this.state.DepartmentIdFilter=e.target.value;
         this.FilterFn();
@@ -159,18 +172,25 @@ export class Department extends Component{
     </button>
     <table className="table table-striped">
     <thead>
-    <tr>
+    <tr>        
        <th>
+           <div className="d-flex flex-row">
+
+
+           
            <input className="form-control m-2"
            onChange={this.changeDepartmentIdFilter}
            placeholder="Filter"/>
 
+
+           </div> 
            DepartmentId
        </th>
        <th>
            <input className="form-control m-2"
            onChange={this.changeDepartmentNameFilter}
            placeholder="Filter"/>
+           </div>
            
            DepartmentName
        </th>       
@@ -272,7 +292,7 @@ export class Department extends Component{
 
 </div>
 </div>
-</div>
+
 
 
         )
